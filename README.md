@@ -1,5 +1,5 @@
 # KontAttack
-Kontrakan Attack and Scaning Tool (V1) coded by xditx32
+Kontrakan Attack and Scanning Tool (V1) coded by xditx32
 
 Copyright 2014 xditx32 a.k.a Aditya Nur Rohman                            
 Dilarang modifikasi, perubahan, atau perubahan ke kode sumber ini   
