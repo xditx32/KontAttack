@@ -1,5 +1,6 @@
 # KontAttack
 Kontrakan Attack and Scaning Tool (V1) coded by xditx32
+
 Copyright 2014 xditx32 a.k.a Aditya Nur Rohman a.k.a etc                            
 Dilarang modifikasi, perubahan, atau perubahan ke kode sumber ini   
 Sertakan Sumber....
